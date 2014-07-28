@@ -1,0 +1,77 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% block title %}bitcoin demo Wallet{% endblock %} 
+{%- block styles %}
+	{{super()}}
+	<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+{%- endblock styles %}
+{% block content %}
+<div class="container">
+   <section style="background:#efefe9;">
+      <div class="container">
+         <div class="row">
+            <div class="board">
+               <div class="board-inner">
+                  <ul class="nav nav-tabs" id="myTab">
+                     <div class="liner"></div>
+                     <li class="active">
+                        <a href="#home" data-toggle="tab" title="welcome">
+                        <span class="round-tabs one">
+                        <i class="glyphicon glyphicon-home"></i>
+                        </span>  
+                        </a>
+                     </li> 
+                     <li><a href="#payment" data-toggle="tab" title="Payments">
+                        <span class="round-tabs four">
+                        <i class="glyphicon glyphicon-credit-card"></i>
+                        </span> 
+                        </a>
+                     </li>
+                     <li style="    float: right;margin-right: 10px;"> <a href="#" style="    width: 100%;">
+                        <span class="round-tabs four" style="    border-radius: 10px; width: 100%;">
+						 {{ BTbalance }} 
+                        </span> 
+                        </a> 
+                     </li>
+                  </ul>
+               </div> 
+               <div class="tab-content">
+                  <div class="tab-pane fade in active" id="home">
+                     <h3 class="head text-center">welcome to bitcoin Personal Wallet demo<sup>™</sup> <span style="color:#f48260;">♥</span></h3>
+                     <p class="narrow text-center">
+                        Your wallet is what allows you to send payments and store your bitcoin money. It gives you ownership of your wallet balance so that you can send and receive coins. 
+                     </p>
+                     <p id="btcAddress" class="text-center">{{ BTaddress }}</p>
+                     <p class="text-center"> 
+                        <a  style="    margin-right: 10px;" href="/paybit/refresh" class="btn btn-info btn-outline-rounded yellow"> Get new address <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></span></a>
+                        <a data-toggle="tab" style="    margin-right: 10px;" href="#payment" class="btn btn-success btn-outline-rounded yellow"> Send money</span></a>
+                     </p>
+					{% autoescape false %} {{ LastMsg }} {% endautoescape %}
+					<h3 class="text-center">Transactions</h3>
+					<div class="well text-center" style="max-height: 300px;overflow: auto;">
+					<ul class="list-group checked-list-box">
+					{% for transaction in transactions %}   
+						<li class="list-group-item"><p><b>{{transaction.amount}}</b> btc <b>{{transaction.category}}</b> at <b>{{transaction.time }}</b> ,  <a href="http://lbw.blockprobe.com/index.php/search?q={{transaction.txid}}" target="_blank">view txid</a></p></li>
+					{% endfor %}
+					</ul>				 
+					</div> 
+                  </div> 
+                  <div class="tab-pane fade" id="payment">
+                     <h3 class="head text-center">Send money!</h3>
+                     <p class="narrow text-center">   {{ wtf.quick_form(form, action='/paybit/payment'  , button_map={'submit_button': 'primary'}) }}  </p>
+                  </div> 
+            </div>
+         </div>
+      </div>
+   </section>
+   
+
+   
+   
+</div>
+{% endblock %} 
+{% block head %} 
+	{{super()}} 
+	{{fixes.ie8()}} 
+{% endblock %}
