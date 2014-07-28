@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jinja-flask-python-rpc-bitcoin by jamesjara</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jinja-flask-python-rpc-bitcoin</h1>
+        <p>demo rpc bitcoin with jinja flask python</p>
+
+        <p class="view"><a href="https://github.com/jamesjara/jinja-flask-python-rpc-bitcoin">View the Project on GitHub <small>jamesjara/jinja-flask-python-rpc-bitcoin</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/jamesjara/jinja-flask-python-rpc-bitcoin/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jamesjara/jinja-flask-python-rpc-bitcoin/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jamesjara/jinja-flask-python-rpc-bitcoin">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="jinja-flask-python-for-bitcoin-rpc" class="anchor" href="#jinja-flask-python-for-bitcoin-rpc"><span class="octicon octicon-link"></span></a>jinja flask python for bitcoin rpc</h1>
+
+<p>Demo bitcoin walled for the cloud.</p>
+
+<ul>
+<li>Responsive mobile </li>
+<li>RPC Bitcoin</li>
+<li>Cloud wallet bitcoin</li>
+</ul><blockquote>
+<p>Send payments to another address bitcoin with python</p>
+</blockquote>
+
+<p><img src="https://scontent-a.xx.fbcdn.net/hphotos-xaf1/t1.0-9/10513427_562785730494780_7544092794707426914_n.png" alt="bitcoin costa rica python"></p>
+
+<h2>
+<a name="installation-centos-6" class="anchor" href="#installation-centos-6"><span class="octicon octicon-link"></span></a>Installation Centos 6</h2>
+
+<div class="highlight highlight-sh"><pre>yum install python 
+yum install python-setuptools
+easy_install pip
+pip install virtualenv 
+pip install Flask 
+pip install flask_bootstrap
+pip install flask_wtf
+pip install python-bitcoinrpc
+yum install -y mod_wsgi  
+vi /etc/httpd/conf.d/wsgi.conf 
+/etc/init.d/httpd restart 
+chcon -R -t httpd_config_t /home/websites/paymentbitcoin/ 
+</pre></div>
+
+<h5>
+<a name="configure-your-httpd-apache-web-server" class="anchor" href="#configure-your-httpd-apache-web-server"><span class="octicon octicon-link"></span></a>Configure your httpd apache web server</h5>
+
+<div class="highlight highlight-sh"><pre>Alias /paybitSource /home/websites/paymentbitcoin/app/wallet.py
+WSGIDaemonProcess wallet <span class="nv">user</span><span class="o">=</span>apache <span class="nv">group</span><span class="o">=</span>apache <span class="nv">threads</span><span class="o">=</span>5
+WSGIScriptAlias /paybit /home/websites/paymentbitcoin/app/wrapper.wsgi
+WSGIScriptReloading On
+&lt;Directory /home/websites/paymentbitcoin/app/&gt;
+        Allow from all
+&lt;/Directory&gt;
+
+</pre></div>
+
+<h5>
+<a name="configure-your-bitcoin-daemonserver" class="anchor" href="#configure-your-bitcoin-daemonserver"><span class="octicon octicon-link"></span></a>Configure your bitcoin daemon/server</h5>
+
+<div class="highlight highlight-sh"><pre>Vi /home/bit92347**/bitcoin.conf
+<span class="nv">server</span><span class="o">=</span>1
+<span class="nv">daemon</span><span class="o">=</span>1
+<span class="nv">rpcuser</span><span class="o">=</span>whatever
+<span class="nv">rpcpassword</span><span class="o">=</span>whatever
+<span class="c">#rpcallowip=*.*.*.*</span>
+<span class="nv">rpcport</span><span class="o">=</span>7244
+<span class="nv">port</span><span class="o">=</span>7245
+<span class="c">#rpcallowip=1-.... </span>
+</pre></div>
+
+<p><a href="http://www.jamesjara.com">www.jamesjara.com</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jamesjara">jamesjara</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
